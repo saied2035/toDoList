@@ -6,7 +6,9 @@ module.exports = {
   entry: './src/index.js',
   plugins: [
     new HtmlWebpackPlugin({
-      template : './public/index.html'
+      inject: 'body',
+      template: './src/index.html',
+      filename: 'index.html',
     }),
   ],
   output: {
@@ -14,10 +16,22 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   module: {
-  rules: [
+    rules: [
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: './images/',
+            },
+          },
+        ],
       },
     ],
   },
