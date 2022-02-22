@@ -22,7 +22,10 @@
 
 
 To get a local copy up and running follow these simple example steps.
-
+for SSH:
+`git clone git@github.com:saied2035/toDoList.git`
+for https:
+`git clone https://github.com/saied2035/toDoList.git`
 ### Install
  
  after cloning the repo run 
@@ -35,9 +38,11 @@ To get a local copy up and running follow these simple example steps.
  `npm start` for devlopment
  `npm run build` for production code
 ### Run tests
-   `npx hint .` for html check. giving hints about what is needed to and to your html page
-   `npx eslint .` for JS check
-   `npx eslint . --fix` to fix JS issues if found
+   - `npx hint .` for html check. giving hints about what is needed to change in your html page.
+   - `npx stylelint "**/*.{css,scss}"` for CSS check.
+   - `npx stylelint "**/*.{css,scss}" --fix` to fix JS issues if found.
+   - `npx eslint .` for JS check.
+   - `npx eslint . --fix` to fix JS issues if found.
 
 ## Authors
 
