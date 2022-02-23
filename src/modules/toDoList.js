@@ -1,5 +1,5 @@
 /* eslint-disable linebreak-style */
-import { taskCompleted, taskEdit } from './events.js';
+import { taskCompleted, taskEdit, updateValue } from './events.js';
 
 class ToDoList {
   constructor() {
@@ -20,6 +20,7 @@ class ToDoList {
     desc.value = description;
     desc.disabled = true;
     desc.required = true;
+    desc.addEventListener('keydown', (event) => updateValue(event, this));
     const dotsContainer = document.createElement('span');
     dotsContainer.className = 'dots-container';
     const dots = document.createElement('i');
@@ -44,6 +45,11 @@ class ToDoList {
       { id: i + 1, description: task.description, completed: task.completed }
     ));
 
+    window.localStorage.setItem('tasks', JSON.stringify(this.taskList));
+  }
+
+  updateTaskDeskcription(index, value) {
+    this.taskList[index].description = value;
     window.localStorage.setItem('tasks', JSON.stringify(this.taskList));
   }
 }

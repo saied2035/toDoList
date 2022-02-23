@@ -41,3 +41,20 @@ export const taskEdit = (event, list) => {
     list.removeTask(index);
   }
 };
+
+export const updateValue = (event, list) => {
+  const icon = event.target.parentNode.children[2];
+  if (!event.target.value) {
+    event.target.placeholder = "the task shouldn't be empty. Please, add value.";
+    return;
+  }
+  if (event.keyCode === 13) {
+    event.target.disabled = true;
+    event.target.parentNode.classList.remove('bg-yellow');
+    icon.children[0].classList.toggle('fa-ellipsis-vertical');
+    icon.children[0].classList.toggle('fa-trash-can');
+    const descriptions = document.querySelectorAll('.description');
+    const index = Array.from(descriptions).indexOf(event.target);
+    list.updateTaskDeskcription(index, event.target.value);
+  }
+};
