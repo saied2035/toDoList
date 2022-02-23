@@ -45,6 +45,7 @@ body {
   margin-bottom: 1rem;
   background: none;
   border: none;
+  cursor: pointer;
 }
 
 #task {
@@ -81,9 +82,11 @@ body {
   gap: 1rem;
 }
 
+
 .fa-ellipsis-vertical {
   margin-left: auto;
   margin-right: 1rem;
+  cursor: pointer;
 }
 
 #add {
@@ -94,4 +97,18 @@ body {
   background-color: #e7e9eb;
   border: none;
   font-size: 16px;
+}
+.description {
+  background: none;
+  outline: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.completed {
+  text-decoration: line-through;
+}
+.disabled {
+  opacity: 0.5;
 }
