@@ -12,7 +12,7 @@ body {
 }
 
 #list-container {
-  min-width: 30vw;
+  min-width: 36vw;
   display: grid;
   grid-template-columns: 80% auto;
   background: #fff;
@@ -82,11 +82,13 @@ body {
   gap: 1rem;
 }
 
+path {
+  pointer-events: none;
+}
 
-.fa-ellipsis-vertical {
+.dots-container {
   margin-left: auto;
   margin-right: 1rem;
-  cursor: pointer;
 }
 
 #add {
@@ -98,6 +100,7 @@ body {
   border: none;
   font-size: 16px;
 }
+
 .description {
   background: none;
   outline: none;
@@ -109,6 +112,19 @@ body {
 .completed {
   text-decoration: line-through;
 }
+
 .disabled {
   opacity: 0.5;
+}
+
+.fa-ellipsis-vertical:hover {
+  cursor: all-scroll;
+}
+
+.fa-trash-can:hover {
+  cursor: pointer;
+}
+
+.bg-yellow {
+  background-color: lightyellow;
 }
