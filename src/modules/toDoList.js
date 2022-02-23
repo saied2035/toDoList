@@ -8,7 +8,7 @@ class ToDoList {
 
   addTask(description) {
     const taskContainer = document.querySelector('#list');
-    const id = taskContainer.children.length + 1;
+    const index = taskContainer.children.length + 1;
     const li = document.createElement('li');
     li.className = 'task';
     const checkBox = document.createElement('input');
@@ -31,7 +31,7 @@ class ToDoList {
     li.appendChild(desc);
     li.appendChild(dotsContainer);
     taskContainer.appendChild(li);
-    this.taskList.push({ id, description, completed: false });
+    this.taskList.push({ index, description, completed: false });
     window.localStorage.setItem('tasks', JSON.stringify(this.taskList));
   }
 
@@ -42,7 +42,7 @@ class ToDoList {
   removeTask(index) {
     this.taskList.splice(index, 1);
     this.taskList = this.taskList.map((task, i) => (
-      { id: i + 1, description: task.description, completed: task.completed }
+      { index: i + 1, description: task.description, completed: task.completed }
     ));
 
     window.localStorage.setItem('tasks', JSON.stringify(this.taskList));
