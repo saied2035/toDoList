@@ -7,7 +7,7 @@
 
  to do list ES6&webpack at mcroverse module 2 week 2 :
 
- Displaying static array of tasks (dynamicly showing the static array )
+dynamicly add-remove-update to-do tasks using classes, modules, webpack and, ES6
 
 ## Built With
 
@@ -30,8 +30,6 @@ for https:
  
  after cloning the repo run 
  `npm install`
-
-
 
 ### Usage
    run 
