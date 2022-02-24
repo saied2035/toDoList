@@ -9,6 +9,10 @@
 
 dynamicly add-remove-update to-do tasks using classes, modules, webpack and, ES6
 
+this is a demonstration video for the project:
+[to-do list project](https://www.loom.com/share/146178f575a442568065bb3164698c90)
+
+
 ## Built With
 
 - HTML
