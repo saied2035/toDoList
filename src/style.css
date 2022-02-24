@@ -70,6 +70,8 @@ body {
   display: flex;
   flex-direction: column;
   padding: 0;
+  max-height: 50vh;
+  overflow: auto;
 }
 
 .checkbox {
