@@ -14,7 +14,7 @@ class ToDoList {
     const checkBox = document.createElement('input');
     checkBox.type = 'checkbox';
     checkBox.className = 'checkbox';
-    checkBox.addEventListener('click', (event) => taskCompleted(event, this));
+    checkBox.addEventListener('change', (event) => taskCompleted(event, this));
     const desc = document.createElement('input');
     desc.className = 'description';
     desc.value = description;
@@ -50,6 +50,14 @@ class ToDoList {
 
   updateTaskDeskcription(index, value) {
     this.taskList[index].description = value;
+    window.localStorage.setItem('tasks', JSON.stringify(this.taskList));
+  }
+
+  removeCompletedTask() {
+    this.taskList = this.taskList.filter((task) => task.completed === false);
+    this.taskList = this.taskList.map((task, i) => (
+      { index: i + 1, description: task.description, completed: task.completed }
+    ));
     window.localStorage.setItem('tasks', JSON.stringify(this.taskList));
   }
 }

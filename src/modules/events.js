@@ -1,5 +1,5 @@
 /* eslint-disable linebreak-style */
-import { getTasks } from './functions.js';
+import { getTasks, checkTaskStyle } from './functions.js';
 
 export const taskAdd = (event, list) => {
   const input = document.querySelector('#task');
@@ -22,6 +22,7 @@ export const taskCompleted = (event, list) => {
   tasks[index].completed = checked;
   window.localStorage.setItem('tasks', JSON.stringify(tasks));
   list.completeTask(index, checked);
+  checkTaskStyle(event.target.parentNode);
 };
 
 export const taskEdit = (event, list) => {
@@ -57,4 +58,10 @@ export const updateValue = (event, list) => {
     const index = Array.from(descriptions).indexOf(event.target);
     list.updateTaskDeskcription(index, event.target.value);
   }
+};
+
+export const removeCompleted = (event, list) => {
+  const completedTasks = document.querySelectorAll('.disabled');
+  Array.from(completedTasks).forEach((task) => task.remove());
+  list.removeCompletedTask();
 };

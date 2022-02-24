@@ -74,6 +74,7 @@ body {
 
 .checkbox {
   margin-left: 1rem;
+  pointer-events: auto;
 }
 
 .task {
@@ -92,14 +93,18 @@ path {
   margin-right: 1rem;
 }
 
-#add {
+#clear {
   grid-column: 1/3;
   width: 100%;
   height: 60px;
-  color: gray;
-  background-color: #e7e9eb;
   border: none;
-  font-size: 16px;
+  font-size: 17px;
+  border-top: 1px solid #b0b4b9;
+  cursor: pointer;
+}
+
+#clear:hover {
+  text-decoration: underline;
 }
 
 .description {
@@ -114,10 +119,6 @@ path {
   text-decoration: line-through;
 }
 
-.disabled {
-  opacity: 0.5;
-}
-
 .fa-ellipsis-vertical:hover {
   cursor: all-scroll;
 }
@@ -128,4 +129,10 @@ path {
 
 .bg-yellow {
   background-color: lightyellow;
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  background: none;
 }
