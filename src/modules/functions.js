@@ -12,8 +12,12 @@ export const showToDoList = (taskList) => {
   if (!window.localStorage.tasks) {
     return;
   }
-  const list = JSON.parse(window.localStorage.tasks);
+  const list = getTasks();
+  const ul = document.querySelector('.list');
+  if (!list.length) {
+    ul.classList.add('dn');
+  }
   list.forEach((task) => {
-    taskList.addTask(task.description);
+    taskList.loadTask(task);
   });
 };

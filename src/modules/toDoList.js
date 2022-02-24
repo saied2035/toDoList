@@ -6,8 +6,8 @@ class ToDoList {
     this.taskList = [];
   }
 
-  addTask(description) {
-    const taskContainer = document.querySelector('#list');
+  createTask(description) {
+    const taskContainer = document.querySelector('.list');
     const index = taskContainer.children.length + 1;
     const li = document.createElement('li');
     li.className = 'task';
@@ -31,8 +31,23 @@ class ToDoList {
     li.appendChild(desc);
     li.appendChild(dotsContainer);
     taskContainer.appendChild(li);
+    return index;
+  }
+
+  addTask(description) {
+    const index = this.createTask(description);
     this.taskList.push({ index, description, completed: false });
     window.localStorage.setItem('tasks', JSON.stringify(this.taskList));
+  }
+
+  loadTask(task) {
+    const index = this.createTask(task.description);
+    const checkBoxes = document.querySelectorAll('.checkbox');
+    this.taskList.push({ index, description: task.description, completed: task.completed });
+    window.localStorage.setItem('tasks', JSON.stringify(this.taskList));
+    if (task.completed) {
+      checkBoxes[index - 1].click();
+    }
   }
 
   completeTask(index, checked) {

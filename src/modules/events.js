@@ -3,11 +3,13 @@ import { getTasks, checkTaskStyle } from './functions.js';
 
 export const taskAdd = (event, list) => {
   const input = document.querySelector('#task');
+  const ul = input.parentNode.children[4];
   if (!input.value) {
     return;
   }
   if (event.keyCode === 13 || event.type === 'click') {
     list.addTask(input.value);
+    ul.classList.remove('dn');
     input.value = null;
   }
 };
@@ -38,8 +40,11 @@ export const taskEdit = (event, list) => {
     const index = iconsArr.indexOf(event.target);
     task.classList.remove('bg-yellow');
     task.children[1].disabled = true;
-    task.remove();
     list.removeTask(index);
+    if (!list.taskList.length) {
+      task.parentNode.classList.add('dn');
+    }
+    task.remove();
   }
 };
 
@@ -64,4 +69,8 @@ export const removeCompleted = (event, list) => {
   const completedTasks = document.querySelectorAll('.disabled');
   Array.from(completedTasks).forEach((task) => task.remove());
   list.removeCompletedTask();
+  if (!list.taskList.length) {
+    const ul = document.querySelector('.list');
+    ul.classList.add('dn');
+  }
 };
