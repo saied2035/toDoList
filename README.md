@@ -52,15 +52,15 @@ for https:
 
 👤 **Saied Gaffer**
 
-- GitHub: [@Saied2035](https://github.com/AckonSamuel)
-- Twitter: [@SaiedGaffer](https://twitter.com/AckonSamuel)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/samuel-ackon-882717190/)
+- GitHub: [@Saied2035](https://github.com/saied2035)
+- Twitter: [@SaiedGaffer](https://twitter.com/SaiedGaffer)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/saiedgaffer/)
 
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/AckonSamuel/awesome-books/issues).
+Feel free to check the [issues page](https://github.com/AckonSamuel/toDoList/issues).
 
 ## Show your support
 
