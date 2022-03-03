@@ -11,9 +11,9 @@ export const taskAdd = (event, list) => {
     list.addTask(input.value);
     ul.classList.remove('dn');
     input.value = null;
-    return "done";
+    return 'done';
   }
-  return 'working!'
+  return 'working!';
 };
 
 export const taskCompleted = (event, list) => {
@@ -31,7 +31,6 @@ export const taskCompleted = (event, list) => {
 
 export const taskEdit = (event, list) => {
   const task = event.target.parentNode.parentNode;
-  console.log(event.target.classList)
   event.target.classList.toggle('fa-ellipsis-vertical');
   event.target.classList.toggle('fa-trash-can');
   if (event.target.classList.contains('fa-trash-can')) {
