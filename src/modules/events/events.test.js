@@ -1,20 +1,21 @@
 /**
  * @jest-environment jsdom
  */
-import { taskAdd, taskEdit,taskCompleted,removeCompleted } from './events.js';
+import {
+  taskAdd, taskEdit, taskCompleted, removeCompleted,
+} from './events.js';
 import taskList from '../toDoList/toDoList.js';
 
-  document.body.innerHTML = '<div id="container">'
-    + '<div id="list-container">'
-    + '<p id="title">today\'s To Do</p>'
-    + '<i class="fa-solid fa-arrows-rotate"></i>'
-    + '<input required id="task"  type="text" placeholder="Add to your list..." />'
-    + '<img id="enter" src="#" alt="enter image">'
-    + '<ul class="list"></ul>'
-    + '<button id="clear" type="button">Clear all completed</button>'
-    + '</div>'
-    + '</div>';
-
+document.body.innerHTML = '<div id="container">'
+  + '<div id="list-container">'
+  + '<p id="title">today\'s To Do</p>'
+  + '<i class="fa-solid fa-arrows-rotate"></i>'
+  + '<input required id="task"  type="text" placeholder="Add to your list..." />'
+  + '<img id="enter" src="#" alt="enter image">'
+  + '<ul class="list"></ul>'
+  + '<button id="clear" type="button">Clear all completed</button>'
+  + '</div>'
+  + '</div>';
 
 describe('add tasks', () => {
   it('check if add task works', () => {
@@ -52,7 +53,6 @@ describe('add tasks', () => {
     expect(htmlResult).toBe('done');
     expect(storageResult).toBe('saied');
     expect(checkLi).toBe(true);
-        console.log(JSON.parse(localStorage.tasks))
   });
 });
 
@@ -61,88 +61,84 @@ describe('remove tasks', () => {
     // arrange
     const removeButton = document.querySelector('.dots-container');
     const dotsIcon = removeButton.children[0];
-    event = {
+    const event = {
       type: 'click',
       target: dotsIcon,
     };
     dotsIcon.classList.toggle('fa-ellipsis-vertical');
     dotsIcon.classList.toggle('fa-trash-can');
     // act
-    const check = () => taskEdit(event, taskList);
-    check();
+    taskEdit(event, taskList);
     // assert
     const ul = document.querySelector('.list');
     expect(ul.children.length).toBe(0);
-        console.log(JSON.parse(localStorage.tasks))
   });
 });
 
-describe("check edit",() => {
-    it('editable',() => {
-      //Arrange
-        const input = document.querySelector('#task');
-        input.value = 'edit task';
-        let event = {
-          type: 'click',
-        };
+describe('check edit', () => {
+  it('editable', () => {
+    // Arrange
+    const input = document.querySelector('#task');
+    input.value = 'edit task';
+    let event = {
+      type: 'click',
+    };
 
-        taskAdd(event, taskList);
+    taskAdd(event, taskList);
 
-        const removeButton = document.querySelector('.dots-container');
-        const dotsIcon = removeButton.children[0];
-        event = {
-          type: 'click',
-          target: dotsIcon,
-        };
-        //Act
-        const check = () => taskEdit(event, taskList);
-        check();
-        const description = document.querySelector('.description')
-        expect(description.disabled).toBe(false);  
-            console.log(JSON.parse(localStorage.tasks))    
-    })
+    const removeButton = document.querySelector('.dots-container');
+    const dotsIcon = removeButton.children[0];
+    event = {
+      type: 'click',
+      target: dotsIcon,
+    };
+    // Act
+    const check = () => taskEdit(event, taskList);
+    check();
+    const description = document.querySelector('.description');
+    expect(description.disabled).toBe(false);
+  });
 });
 
 describe('check completed status', () => {
-	it('completed', () => {
-		// Arrange
-		const input = document.querySelector('#task');
-        input.value = 'completed task';
-        let event = {
-          type: 'click',
-        };
+  it('completed', () => {
+    // Arrange
+    const input = document.querySelector('#task');
+    input.value = 'completed task';
+    let event = {
+      type: 'click',
+    };
 
-        taskAdd(event, taskList);
+    taskAdd(event, taskList);
 
-		const checkbox = document.querySelector('.checkbox')
+    const checkbox = document.querySelector('.checkbox');
 
-		event = {
-			type: 'click',
-			target: checkbox,
-		  };
-		  taskCompleted(event,taskList);
-		  const completedTask = JSON.parse(localStorage.tasks)[0].completed
-		   expect(completedTask).toBe(true);
-           console.log(JSON.parse(localStorage.tasks))
-	})
-})
+    event = {
+      type: 'click',
+      target: checkbox,
+    };
+    taskCompleted(event, taskList);
+    const completedTask = JSON.parse(localStorage.tasks)[0].completed;
+    expect(completedTask).toBe(true);
+  });
+});
 
 describe('clear all task', () => {
   it('clear all', () => {
     // Arrange
     const input = document.querySelector('#task');
-        input.value = 'completed all tasks';
-        const checkboxes = document.querySelectorAll('.checkbox')
+    input.value = 'completed all tasks';
+    const checkboxes = document.querySelectorAll('.checkbox');
 
-        Array.from(checkboxes).forEach(checkbox => {
-        let event = {
-                type: 'click',
-                target: checkbox,
-        }
-        taskCompleted(event,taskList)
-      });
-        const event = {type:'click'}
-       removeCompleted(event,taskList)
-           console.log(JSON.parse(localStorage.tasks))
-  })
-})
+    Array.from(checkboxes).forEach((checkbox) => {
+      const event = {
+        type: 'click',
+        target: checkbox,
+      };
+      taskCompleted(event, taskList);
+    });
+    const event = { type: 'click' };
+    removeCompleted(event, taskList);
+    expect(taskList.taskList.length).toBe(1);
+  });
+});
