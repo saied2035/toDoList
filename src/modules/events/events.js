@@ -1,17 +1,19 @@
 /* eslint-disable linebreak-style */
-import { getTasks, checkTaskStyle } from './functions.js';
+import { getTasks, checkTaskStyle } from '../functions/functions.js';
 
 export const taskAdd = (event, list) => {
   const input = document.querySelector('#task');
-  const ul = input.parentNode.children[4];
+  const ul = document.querySelector('.list');
   if (!input.value) {
-    return;
+    return "it's empty";
   }
   if (event.keyCode === 13 || event.type === 'click') {
     list.addTask(input.value);
     ul.classList.remove('dn');
     input.value = null;
+    return "done";
   }
+  return 'working!'
 };
 
 export const taskCompleted = (event, list) => {

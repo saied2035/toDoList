@@ -1,5 +1,5 @@
 /* eslint-disable linebreak-style */
-import { taskCompleted, taskEdit, updateValue } from './events.js';
+import { taskCompleted, taskEdit, updateValue } from '../events/events.js';
 
 class ToDoList {
   constructor() {
