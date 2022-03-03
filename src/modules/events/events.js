@@ -31,6 +31,7 @@ export const taskCompleted = (event, list) => {
 
 export const taskEdit = (event, list) => {
   const task = event.target.parentNode.parentNode;
+  console.log(event.target.classList)
   event.target.classList.toggle('fa-ellipsis-vertical');
   event.target.classList.toggle('fa-trash-can');
   if (event.target.classList.contains('fa-trash-can')) {

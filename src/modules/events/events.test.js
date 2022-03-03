@@ -64,15 +64,18 @@ describe("remove tasks", () => {
 
     input.value = "remove task";
     const event = {
+    	type: 'click',
       target: {
         parentNode: {
           parentNode: input,
+          classList: ["svg-inline--fa","fa-trash-can"]
         },
+
       },
     };
     taskAdd(event, taskList);
-    const li = document.querySelector(".task");
-    console.log(li);
+    const ul = document.querySelector(".list");
+    const li = ul.children[0]
     const removeButton = document.querySelector(".dots-container");
     const dotsIcon = removeButton.children[0];
     dotsIcon.classList.toggle("fa-ellipsis-vertical");
