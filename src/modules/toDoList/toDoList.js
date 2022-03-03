@@ -24,7 +24,7 @@ class ToDoList {
     const dotsContainer = document.createElement('span');
     dotsContainer.className = 'dots-container';
     const dots = document.createElement('i');
-    dots.className = 'fa-solid fa-ellipsis-vertical';
+    dots.className = 'fa-solid fa-ellipsis-vertical icon';
     dotsContainer.appendChild(dots);
     dotsContainer.addEventListener('click', (event) => taskEdit(event, this));
     li.appendChild(checkBox);
