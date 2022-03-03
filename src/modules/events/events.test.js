@@ -27,7 +27,7 @@ describe('add tasks', () => {
 		//Act
 		const result = taskAdd(event,taskList)
 		//Assert
-		expect(result).toBe("working!")
+		expect(result).toBe("working!");
 	})
 
 	it('empty case', () => {
@@ -37,5 +37,21 @@ describe('add tasks', () => {
 		const result = taskAdd(event,taskList)
 		expect(result).toBe("it's empty")
 	})
+	it('click event test', () => {
+		// Arrange
+		const input = document.querySelector('#task');
+		input.value='saied' 
+		const event = {type : "click"}
+		
+		// Act
+		const htmlResult = taskAdd(event,taskList)
+		const storageResult = JSON.parse(localStorage.tasks)[0].description
+		console.log(storageResult)
+
+		// Assert
+		expect(htmlResult).toBe("done");
+		expect(storageResult).toBe('saied');
+	})
+
 })
 
