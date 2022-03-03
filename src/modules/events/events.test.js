@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { taskAdd, taskEdit } from './events.js';
+import { taskAdd, taskEdit,taskCompleted } from './events.js';
 import taskList from '../toDoList/toDoList.js';
 
 beforeEach(() => {
@@ -89,7 +89,7 @@ describe("check edit",() => {
     it('editable',() => {
       //Arrange
         const input = document.querySelector('#task');
-        input.value = 'remove task';
+        input.value = 'edit task';
         let event = {
           type: 'click',
         };
@@ -106,6 +106,30 @@ describe("check edit",() => {
         const check = () => taskEdit(event, taskList);
         check();
         const description = document.querySelector('.description')
-        expect(description.disabled).toBe(false)      
+        expect(description.disabled).toBe(false);      
     })
+});
+
+describe('check completed status', () => {
+	it('completed', () => {
+		// Arrange
+		const input = document.querySelector('#task');
+        input.value = 'completed task';
+        let event = {
+          type: 'click',
+        };
+
+        taskAdd(event, taskList);
+
+		const checkbox = document.querySelector('.checkbox')
+
+		event = {
+			type: 'click',
+			target: checkbox,
+		  };
+		  taskCompleted(event,taskList);
+		  const completedTask = JSON.parse(localStorage.tasks)[0].completed
+			console.log(taskList.taskList)
+		   expect(completedTask).toBe(true);
+	})
 })
