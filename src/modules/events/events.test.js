@@ -1,10 +1,9 @@
 /**
  * @jest-environment jsdom
  */
-import { taskAdd, taskEdit,taskCompleted } from './events.js';
+import { taskAdd, taskEdit,taskCompleted,removeCompleted } from './events.js';
 import taskList from '../toDoList/toDoList.js';
 
-beforeEach(() => {
   document.body.innerHTML = '<div id="container">'
     + '<div id="list-container">'
     + '<p id="title">today\'s To Do</p>'
@@ -15,7 +14,7 @@ beforeEach(() => {
     + '<button id="clear" type="button">Clear all completed</button>'
     + '</div>'
     + '</div>';
-});
+
 
 describe('add tasks', () => {
   it('check if add task works', () => {
@@ -35,6 +34,7 @@ describe('add tasks', () => {
     const event = {};
     const result = taskAdd(event, taskList);
     expect(result).toBe("it's empty");
+       
   });
   it('click event test', () => {
     // Arrange
@@ -58,6 +58,8 @@ describe('add tasks', () => {
 
 describe('remove tasks', () => {
   it('check remove', () => {
+  localStorage.setItem('tasks',JSON.stringify([]))
+  console.log('in remove',localStorage.tasks)
     // arrange
     const input = document.querySelector('#task');
 
@@ -68,7 +70,7 @@ describe('remove tasks', () => {
 
     taskAdd(event, taskList);
 
-    const removeButton = document.querySelector('.dots-container');
+    const removeButton = document.querySelectorAll('.dots-container')[1];
     const dotsIcon = removeButton.children[0];
     event = {
       type: 'click',
@@ -81,7 +83,8 @@ describe('remove tasks', () => {
     check();
     // assert
     const ul = document.querySelector('.list');
-    expect(ul.children.length).toBe(0);
+    expect(ul.children.length).toBe(1);
+
   });
 });
 
@@ -129,7 +132,35 @@ describe('check completed status', () => {
 		  };
 		  taskCompleted(event,taskList);
 		  const completedTask = JSON.parse(localStorage.tasks)[0].completed
-			console.log(taskList.taskList)
 		   expect(completedTask).toBe(true);
 	})
+})
+
+describe('clear all task', () => {
+  localStorage.setItem('tasks',JSON.stringify([]))
+  it('clear all', () => {
+    // Arrange
+        const input = document.querySelector('#task');
+        input.value = 'edit task';
+        let event = {
+          type: 'click',
+        };
+
+        taskAdd(event, taskList);
+        taskAdd(event, taskList);
+        taskAdd(event, taskList);
+        console.log(JSON.parse(localStorage.tasks))
+        const checkboxes = document.querySelectorAll('.checkbox')
+
+        Array.from(checkboxes).forEach(checkbox => {
+        event = {
+                type: 'click',
+                target: checkbox,
+        }
+        taskCompleted(event,taskList)
+      });
+        event = {type:'click'}
+       removeCompleted(event,taskList)
+       console.log(JSON.parse(localStorage.tasks))
+  })
 })

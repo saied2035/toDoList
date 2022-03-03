@@ -37,9 +37,8 @@ export const taskEdit = (event, list) => {
     task.classList.add('bg-yellow');
     task.children[1].disabled = false;
   } else {
-    const icons = document.querySelectorAll('.svg-inline--fa');
-    const [, ...iconsArr] = icons;
-    const index = iconsArr.indexOf(event.target);
+    const icons = document.querySelectorAll('.icon');
+    const index = Array.from(icons).indexOf(event.target);
     task.classList.remove('bg-yellow');
     task.children[1].disabled = true;
     list.removeTask(index);
