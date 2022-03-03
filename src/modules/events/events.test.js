@@ -84,3 +84,28 @@ describe('remove tasks', () => {
     expect(ul.children.length).toBe(0);
   });
 });
+
+describe("check edit",() => {
+    it('editable',() => {
+      //Arrange
+        const input = document.querySelector('#task');
+        input.value = 'remove task';
+        let event = {
+          type: 'click',
+        };
+
+        taskAdd(event, taskList);
+
+        const removeButton = document.querySelector('.dots-container');
+        const dotsIcon = removeButton.children[0];
+        event = {
+          type: 'click',
+          target: dotsIcon,
+        };
+        //Act
+        const check = () => taskEdit(event, taskList);
+        check();
+        const description = document.querySelector('.description')
+        expect(description.disabled).toBe(false)      
+    })
+})
